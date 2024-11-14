@@ -1,0 +1,15 @@
+﻿1.Zapytać o to jak to ma być dzielone, grupy jakies czy cos?
+
+2. Czy kierowcy też muszą się logować?
+
+3. Dodać detale takie jak stan ogumienia, daty przeglądów/ubezpieczeń, stan licznika, itp.
+
+4.Key dla auta to może być jego rejestracja ?
+
+5. Czy kierowcy mają jakieś uprawnienia, czy mogą wszystko?
+
+6. Czy kierowcy w ogóle powinni tam być z jakimiś większymi danymi ? 
+
+7. Czy z założenia ta apka ma być używana przez jedną firmę, czy przez wiele?
+
+8. Czy z założenia apka ma być używana tylko przez managerów?
