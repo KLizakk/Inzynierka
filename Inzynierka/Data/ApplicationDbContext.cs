@@ -11,6 +11,7 @@ namespace Inzynierka.Data
         {
         }
         public DbSet<Models.Car> Cars { get; set; }
+        public DbSet<Models.Driver> Drivers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
