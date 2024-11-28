@@ -1,0 +1,31 @@
+﻿@model Inzynierka.Models.Rental
+@{
+    ViewBag.Title = "Create Rental";
+}
+
+<h2>Create Rental</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="DriverId">Driver</label>
+        <select asp-for="DriverId" class="form-control" asp-items="@(new SelectList(ViewBag.Drivers, "DriverId", "FullName"))"></select>
+    </div>
+
+    <div class="form-group">
+        <label for="CarRegistrationNumber">Car</label>
+        <select asp-for="RegistrationNumber" class="form-control" asp-items="@(new SelectList(ViewBag.Cars, "RegistrationNumber", "Model"))"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StartDate"></label>
+        <input asp-for="StartDate" type="date" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EndDate"></label>
+        <input asp-for="EndDate" type="date" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+

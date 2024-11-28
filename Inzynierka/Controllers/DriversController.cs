@@ -26,7 +26,7 @@ namespace Inzynierka.Controllers
         }
 
         // GET: Drivers/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -34,7 +34,7 @@ namespace Inzynierka.Controllers
             }
 
             var driver = await _context.Drivers
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.DriverId == id);
             if (driver == null)
             {
                 return NotFound();
@@ -48,7 +48,6 @@ namespace Inzynierka.Controllers
         {
             ViewBag.Permissions = Enum.GetValues(typeof(PermissionNeeded)).Cast<PermissionNeeded>().ToList();
             return View();
-            
         }
 
         // POST: Drivers/Create
@@ -56,11 +55,11 @@ namespace Inzynierka.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,PhoneNumber,DateOfBirth,PermissionNeeded")] Driver driver, List<PermissionNeeded> selectedPermissions)
+        public async Task<IActionResult> Create([Bind("FirstName,LastName,PhoneNumber,DateOfBirth,PermissionNeeded")] Driver driver, List<PermissionNeeded> selectedPermissions)
         {
             if (ModelState.IsValid)
             {
-                driver.PermissionNeeded = selectedPermissions; // Przypisanie wybranych uprawnień
+               driver.PermissionNeeded = selectedPermissions;
                 _context.Add(driver);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -70,7 +69,7 @@ namespace Inzynierka.Controllers
         }
 
         // GET: Drivers/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -91,9 +90,9 @@ namespace Inzynierka.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,FirstName,PhoneNumber,DateOfBirth,PermissionNeeded")] Driver driver,List<PermissionNeeded> selectedPermissions)
+        public async Task<IActionResult> Edit(int id, [Bind("DriverId,FirstName,PhoneNumber,DateOfBirth,PermissionNeeded")] Driver driver, List<PermissionNeeded> selectedPermissions)
         {
-            if (id != driver.Id)
+            if (id != driver.DriverId)
             {
                 return NotFound();
             }
@@ -102,13 +101,13 @@ namespace Inzynierka.Controllers
             {
                 try
                 {
-                    driver.PermissionNeeded = selectedPermissions; // Przypisanie wybranych uprawnień
+                    driver.PermissionNeeded = selectedPermissions;
                     _context.Update(driver);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DriverExists(driver.Id))
+                    if (!DriverExists(driver.DriverId))
                     {
                         return NotFound();
                     }
@@ -124,7 +123,7 @@ namespace Inzynierka.Controllers
         }
 
         // GET: Drivers/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -132,7 +131,7 @@ namespace Inzynierka.Controllers
             }
 
             var driver = await _context.Drivers
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.DriverId == id);
             if (driver == null)
             {
                 return NotFound();
@@ -144,7 +143,7 @@ namespace Inzynierka.Controllers
         // POST: Drivers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var driver = await _context.Drivers.FindAsync(id);
             if (driver != null)
@@ -156,9 +155,9 @@ namespace Inzynierka.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DriverExists(string id)
+        private bool DriverExists(int id)
         {
-            return _context.Drivers.Any(e => e.Id == id);
+            return _context.Drivers.Any(e => e.DriverId == id);
         }
     }
 }

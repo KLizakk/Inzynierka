@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Inzynierka.Models.Rental>
+@{
+    ViewBag.Title = "Rental List";
+}
+
+<h2>Rental List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Driver</th>
+            <th>Car</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var rental in Model)
+        {
+            <tr>
+                <td>@rental.Driver.FullName</td>
+                <td>@rental.Car.RegistrationNumber</td>
+                <td>@rental.StartDate.ToShortDateString()</td>
+                <td>@rental.EndDate?.ToShortDateString()</td>
+                <td>@rental.Notes</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -35,6 +35,8 @@ namespace Inzynierka.Models
         public double? MaxDistance { get; set; }
         public double? MaxLoad { get; set; }
         public double? TreadCondition { get; set; }
+        // Lista wypożyczeń
+        public List<Rental>? Rentals { get; set; } = new List<Rental>();
     }
     public enum CarType
     {

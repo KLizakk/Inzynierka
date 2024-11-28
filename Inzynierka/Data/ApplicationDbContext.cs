@@ -12,10 +12,20 @@ namespace Inzynierka.Data
         }
         public DbSet<Models.Car> Cars { get; set; }
         public DbSet<Models.Driver> Drivers { get; set; }
+        public DbSet<Models.Rental> Rentals { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Rental>()
+        .HasOne(r => r.Driver)
+        .WithMany(d => d.Rentals)
+        .HasForeignKey(r => r.DriverId);
+
+            modelBuilder.Entity<Rental>()
+                .HasOne(r => r.Car)
+                .WithMany(c => c.Rentals)
+                .HasForeignKey(r => r.RegistrationNumber);
             modelBuilder.Entity<Models.Car>().HasData(
              new Models.Car()
              {

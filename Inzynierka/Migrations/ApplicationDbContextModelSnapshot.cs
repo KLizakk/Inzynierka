@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Inzynierka.Data.Migrations
+namespace Inzynierka.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -164,9 +164,9 @@ namespace Inzynierka.Data.Migrations
                             FuelTankCapacity = 50.0,
                             FuelType = 1,
                             GearboxType = 0,
-                            LastInsurance = new DateTime(2024, 9, 28, 17, 37, 0, 844, DateTimeKind.Local).AddTicks(6616),
-                            LastOilChange = new DateTime(2024, 6, 28, 17, 37, 0, 844, DateTimeKind.Local).AddTicks(6618),
-                            LastTechnicalReview = new DateTime(2024, 3, 28, 17, 37, 0, 844, DateTimeKind.Local).AddTicks(6566),
+                            LastInsurance = new DateTime(2024, 9, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(343),
+                            LastOilChange = new DateTime(2024, 6, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(345),
+                            LastTechnicalReview = new DateTime(2024, 3, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(295),
                             MaxDistance = 900.0,
                             MaxLoad = 450.0,
                             Model = "Golf",
@@ -191,9 +191,9 @@ namespace Inzynierka.Data.Migrations
                             FuelTankCapacity = 60.0,
                             FuelType = 5,
                             GearboxType = 1,
-                            LastInsurance = new DateTime(2024, 10, 28, 17, 37, 0, 844, DateTimeKind.Local).AddTicks(6627),
-                            LastOilChange = new DateTime(2024, 8, 28, 17, 37, 0, 844, DateTimeKind.Local).AddTicks(6628),
-                            LastTechnicalReview = new DateTime(2024, 7, 28, 17, 37, 0, 844, DateTimeKind.Local).AddTicks(6625),
+                            LastInsurance = new DateTime(2024, 10, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(353),
+                            LastOilChange = new DateTime(2024, 8, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(354),
+                            LastTechnicalReview = new DateTime(2024, 7, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(352),
                             MaxDistance = 1100.0,
                             MaxLoad = 480.0,
                             Model = "C-Class",
@@ -218,9 +218,9 @@ namespace Inzynierka.Data.Migrations
                             FuelTankCapacity = 58.0,
                             FuelType = 1,
                             GearboxType = 1,
-                            LastInsurance = new DateTime(2024, 6, 28, 17, 37, 0, 844, DateTimeKind.Local).AddTicks(6635),
-                            LastOilChange = new DateTime(2024, 4, 28, 17, 37, 0, 844, DateTimeKind.Local).AddTicks(6636),
-                            LastTechnicalReview = new DateTime(2024, 1, 28, 17, 37, 0, 844, DateTimeKind.Local).AddTicks(6634),
+                            LastInsurance = new DateTime(2024, 6, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(362),
+                            LastOilChange = new DateTime(2024, 4, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(363),
+                            LastTechnicalReview = new DateTime(2024, 1, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(360),
                             MaxDistance = 800.0,
                             MaxLoad = 500.0,
                             Model = "CX-5",
@@ -244,7 +244,7 @@ namespace Inzynierka.Data.Migrations
                             FuelConsumption = 0.0,
                             FuelType = 4,
                             GearboxType = 1,
-                            LastInsurance = new DateTime(2024, 9, 28, 17, 37, 0, 844, DateTimeKind.Local).AddTicks(6642),
+                            LastInsurance = new DateTime(2024, 9, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(369),
                             MaxDistance = 560.0,
                             MaxLoad = 430.0,
                             Model = "Model 3",
@@ -269,9 +269,9 @@ namespace Inzynierka.Data.Migrations
                             FuelTankCapacity = 50.0,
                             FuelType = 1,
                             GearboxType = 0,
-                            LastInsurance = new DateTime(2024, 5, 28, 17, 37, 0, 844, DateTimeKind.Local).AddTicks(6649),
-                            LastOilChange = new DateTime(2024, 2, 28, 17, 37, 0, 844, DateTimeKind.Local).AddTicks(6651),
-                            LastTechnicalReview = new DateTime(2023, 12, 28, 17, 37, 0, 844, DateTimeKind.Local).AddTicks(6647),
+                            LastInsurance = new DateTime(2024, 5, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(377),
+                            LastOilChange = new DateTime(2024, 2, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(378),
+                            LastTechnicalReview = new DateTime(2023, 12, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(375),
                             MaxDistance = 950.0,
                             MaxLoad = 470.0,
                             Model = "Duster",
@@ -287,13 +287,20 @@ namespace Inzynierka.Data.Migrations
 
             modelBuilder.Entity("Inzynierka.Models.Driver", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("DriverId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DriverId"));
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -304,9 +311,42 @@ namespace Inzynierka.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("DriverId");
 
                     b.ToTable("Drivers");
+                });
+
+            modelBuilder.Entity("Inzynierka.Models.Rental", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DriverId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RegistrationNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DriverId");
+
+                    b.HasIndex("RegistrationNumber");
+
+                    b.ToTable("Rentals");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -511,6 +551,25 @@ namespace Inzynierka.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Inzynierka.Models.Rental", b =>
+                {
+                    b.HasOne("Inzynierka.Models.Driver", "Driver")
+                        .WithMany("Rentals")
+                        .HasForeignKey("DriverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Inzynierka.Models.Car", "Car")
+                        .WithMany("Rentals")
+                        .HasForeignKey("RegistrationNumber")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+
+                    b.Navigation("Driver");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -560,6 +619,16 @@ namespace Inzynierka.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Inzynierka.Models.Car", b =>
+                {
+                    b.Navigation("Rentals");
+                });
+
+            modelBuilder.Entity("Inzynierka.Models.Driver", b =>
+                {
+                    b.Navigation("Rentals");
                 });
 #pragma warning restore 612, 618
         }
