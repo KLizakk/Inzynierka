@@ -32,18 +32,19 @@ namespace Inzynierka.Controllers
             rental.Car = _context.Cars.Find(rental.RegistrationNumber);
             rental.Driver = _context.Drivers.Find(rental.DriverId);
 
-            try
-            { 
-                _context.Add(rental);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-            }
-            catch
+            if(rental.Car == null || rental.Driver == null)
             {
                 ViewBag.Drivers = _context.Drivers.ToList();
                 ViewBag.Cars = _context.Cars.ToList();
-                return View(rental); ;
+                return View(rental);
             }
+
+            else{ 
+             _context.Add(rental);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+            }
+            
             
         }
 

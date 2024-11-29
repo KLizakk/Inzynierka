@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Inzynierka.Models
 {
@@ -12,6 +13,16 @@ namespace Inzynierka.Models
         public PermissionNeeded? PermissionNeeded { get; set; }
         public string? Description { get; set; }
 
+        //Pomocnicze
+        [NotMapped]
+        public int? DaysUntilNextTechnicalReview => LastTechnicalReview.HasValue
+        ? (LastTechnicalReview.Value.AddYears(1) - DateTime.Now).Days
+        : (int?)null;
+
+        [NotMapped]
+        public int? DaysUntilNextInsurance => LastInsurance.HasValue
+        ? (LastInsurance.Value.AddYears(1) - DateTime.Now).Days
+        : (int?)null;
 
         // Szczegóły
 

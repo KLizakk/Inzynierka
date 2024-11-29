@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Inzynierka.Models.Car>
+
+@{
+    ViewData["Title"] = "TimeTo";
+}
+
+<h2>TimeTo</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Numer Rejestracyjny</th>
+            <th>Model</th>
+            <th>Marka</th>
+            <th>Dni do przeglądu</th>
+            <th>Dni do ubezpieczenia</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var car in Model)
+        {
+            <tr>
+                <td>@car.RegistrationNumber</td>
+                <td>@car.Model</td>
+                <td>@car.Brand</td>
+                <td>
+                    @if (car.DaysUntilNextTechnicalReview.HasValue)
+                    {
+                        <span class="@(car.DaysUntilNextTechnicalReview <= 30 ? "text-danger" : "text-success")">
+                            @car.DaysUntilNextTechnicalReview dni
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="text-warning">Brak danych</span>
+                    }
+                </td>
+                <td>
+                    @if (car.DaysUntilNextInsurance.HasValue)
+                    {
+                        <span class="@(car.DaysUntilNextInsurance <= 30 ? "text-danger" : "text-success")">
+                            @car.DaysUntilNextInsurance dni
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="text-warning">Brak danych</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

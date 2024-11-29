@@ -20,3 +20,14 @@ html {
 body {
   margin-bottom: 60px;
 }
+.text-danger {
+    color: red;
+}
+
+.text-success {
+    color: green;
+}
+
+.text-warning {
+    color: orange;
+}

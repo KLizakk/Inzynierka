@@ -24,6 +24,13 @@ namespace Inzynierka.Controllers
         {
             return View(await _context.Cars.ToListAsync());
         }
+        //Custom method to get the list with days until next technical review etc
+
+        public async Task<IActionResult> TimeTo()
+        {
+            return View(await _context.Cars.ToListAsync()); 
+        }
+
 
         // GET: Cars/Details/5
         public async Task<IActionResult> Details(string id)
