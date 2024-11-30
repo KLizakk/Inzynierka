@@ -62,6 +62,7 @@ namespace Inzynierka.Migrations
                     VIN = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PermissionNeeded = table.Column<int>(type: "int", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsRented = table.Column<bool>(type: "bit", nullable: false),
                     ProductionYear = table.Column<int>(type: "int", nullable: true),
                     EngineCapacity = table.Column<int>(type: "int", nullable: true),
                     CarType = table.Column<int>(type: "int", nullable: true),
@@ -96,7 +97,8 @@ namespace Inzynierka.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PermissionNeeded = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    PermissionNeeded = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsBusy = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -240,16 +242,28 @@ namespace Inzynierka.Migrations
 
             migrationBuilder.InsertData(
                 table: "Cars",
-                columns: new[] { "RegistrationNumber", "Brand", "CarType", "Description", "DriveType", "EngineCapacity", "ExhaustGasEmissionCategory", "FuelConsumption", "FuelTankCapacity", "FuelType", "GearboxType", "LastInsurance", "LastOilChange", "LastTechnicalReview", "MaxDistance", "MaxLoad", "Model", "NumberOfDoors", "NumberOfGears", "NumberOfSeats", "PermissionNeeded", "ProductionYear", "TreadCondition", "VIN" },
+                columns: new[] { "RegistrationNumber", "Brand", "CarType", "Description", "DriveType", "EngineCapacity", "ExhaustGasEmissionCategory", "FuelConsumption", "FuelTankCapacity", "FuelType", "GearboxType", "IsRented", "LastInsurance", "LastOilChange", "LastTechnicalReview", "MaxDistance", "MaxLoad", "Model", "NumberOfDoors", "NumberOfGears", "NumberOfSeats", "PermissionNeeded", "ProductionYear", "TreadCondition", "VIN" },
                 values: new object[,]
                 {
-                    { "ABC12345", "Tesla", 0, "Electric sedan", 2, 0, 6, 0.0, null, 4, 1, null, null, null, 600.0, 500.0, "Model S", 4, 1, 5, 1, 2021, 80.0, "5YJSA1E26MF123456" },
-                    { "GD9988LK", "Dacia", 2, "Affordable off-road SUV", 0, 1500, 4, 5.2999999999999998, 50.0, 1, 0, new DateTime(2024, 5, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(377), new DateTime(2024, 2, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(378), new DateTime(2023, 12, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(375), 950.0, 470.0, "Duster", 5, 5, 5, 1, 2017, 60.0, "UU1KSDMJ455123456" },
-                    { "KR6789XYZ", "Mercedes-Benz", 0, "Luxury sedan", 1, 2000, 5, 4.7999999999999998, 60.0, 5, 1, new DateTime(2024, 10, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(353), new DateTime(2024, 8, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(354), new DateTime(2024, 7, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(352), 1100.0, 480.0, "C-Class", 4, 9, 5, 1, 2021, 90.0, "WDD2050741F123456" },
-                    { "PL1234ABC", "Volkswagen", 1, "Popular compact car", 0, 1600, 5, 5.5, 50.0, 1, 0, new DateTime(2024, 9, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(343), new DateTime(2024, 6, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(345), new DateTime(2024, 3, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(295), 900.0, 450.0, "Golf", 5, 6, 5, 1, 2020, 80.0, "WVWZZZ1KZ6P123456" },
-                    { "PO1122RT", "Tesla", 0, "Electric car", 2, 0, 6, 0.0, null, 4, 1, new DateTime(2024, 9, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(369), null, null, 560.0, 430.0, "Model 3", 4, 1, 5, 1, 2022, 85.0, "5YJ3E1EA7KF123456" },
-                    { "WA4455GH", "Mazda", 2, "Mid-size SUV", 2, 2200, 5, 7.2000000000000002, 58.0, 1, 1, new DateTime(2024, 6, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(362), new DateTime(2024, 4, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(363), new DateTime(2024, 1, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(360), 800.0, 500.0, "CX-5", 5, 6, 5, 1, 2018, 75.0, "JMZKF1W1A01234567" },
-                    { "XYZ98765", "Honda", 1, "Compact car", 0, 1800, 5, 6.5, 45.0, 0, 0, null, null, null, 700.0, 400.0, "Civic", 5, 6, 5, 1, 2019, 70.0, "1HGEM21901L123456" }
+                    { "ABC12345", "Tesla", 0, "Electric sedan", 2, 0, 6, 0.0, null, 4, 1, false, null, null, null, 600.0, 500.0, "Model S", 4, 1, 5, 1, 2021, 80.0, "5YJSA1E26MF123456" },
+                    { "GD9988LK", "Dacia", 2, "Affordable off-road SUV", 0, 1500, 4, 5.2999999999999998, 50.0, 1, 0, false, new DateTime(2024, 5, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6192), new DateTime(2024, 2, 29, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6194), new DateTime(2023, 12, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6191), 950.0, 470.0, "Duster", 5, 5, 5, 1, 2017, 60.0, "UU1KSDMJ455123456" },
+                    { "KR6789XYZ", "Mercedes-Benz", 0, "Luxury sedan", 1, 2000, 5, 4.7999999999999998, 60.0, 5, 1, false, new DateTime(2024, 10, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6167), new DateTime(2024, 8, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6169), new DateTime(2024, 7, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6166), 1100.0, 480.0, "C-Class", 4, 9, 5, 1, 2021, 90.0, "WDD2050741F123456" },
+                    { "PL1234ABC", "Volkswagen", 1, "Popular compact car", 0, 1600, 5, 5.5, 50.0, 1, 0, false, new DateTime(2024, 9, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6157), new DateTime(2024, 6, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6159), new DateTime(2024, 3, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6114), 900.0, 450.0, "Golf", 5, 6, 5, 1, 2020, 80.0, "WVWZZZ1KZ6P123456" },
+                    { "PO1122RT", "Tesla", 0, "Electric car", 2, 0, 6, 0.0, null, 4, 1, false, new DateTime(2024, 9, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6185), null, null, 560.0, 430.0, "Model 3", 4, 1, 5, 1, 2022, 85.0, "5YJ3E1EA7KF123456" },
+                    { "WA4455GH", "Mazda", 2, "Mid-size SUV", 2, 2200, 5, 7.2000000000000002, 58.0, 1, 1, false, new DateTime(2024, 6, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6176), new DateTime(2024, 4, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6178), new DateTime(2024, 1, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6175), 800.0, 500.0, "CX-5", 5, 6, 5, 1, 2018, 75.0, "JMZKF1W1A01234567" },
+                    { "XYZ98765", "Honda", 1, "Compact car", 0, 1800, 5, 6.5, 45.0, 0, 0, false, null, null, null, 700.0, 400.0, "Civic", 5, 6, 5, 1, 2019, 70.0, "1HGEM21901L123456" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Drivers",
+                columns: new[] { "DriverId", "DateOfBirth", "FirstName", "IsBusy", "LastName", "PermissionNeeded", "PhoneNumber" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(1985, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "John", false, "Doe", "[]", "123456789" },
+                    { 2, new DateTime(1990, 8, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jane", false, "Smith", "[]", "987654321" },
+                    { 3, new DateTime(1978, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Robert", false, "Johnson", "[]", "555666777" },
+                    { 4, new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Emily", false, "Davis", "[]", "222333444" },
+                    { 5, new DateTime(1980, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), "Michael", false, "Wilson", "[]", "111222333" }
                 });
 
             migrationBuilder.CreateIndex(

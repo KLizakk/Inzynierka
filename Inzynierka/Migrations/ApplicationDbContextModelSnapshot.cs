@@ -58,6 +58,9 @@ namespace Inzynierka.Migrations
                     b.Property<int?>("GearboxType")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsRented")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("LastInsurance")
                         .HasColumnType("datetime2");
 
@@ -116,6 +119,7 @@ namespace Inzynierka.Migrations
                             FuelConsumption = 0.0,
                             FuelType = 4,
                             GearboxType = 1,
+                            IsRented = false,
                             MaxDistance = 600.0,
                             MaxLoad = 500.0,
                             Model = "Model S",
@@ -140,6 +144,7 @@ namespace Inzynierka.Migrations
                             FuelTankCapacity = 45.0,
                             FuelType = 0,
                             GearboxType = 0,
+                            IsRented = false,
                             MaxDistance = 700.0,
                             MaxLoad = 400.0,
                             Model = "Civic",
@@ -164,9 +169,10 @@ namespace Inzynierka.Migrations
                             FuelTankCapacity = 50.0,
                             FuelType = 1,
                             GearboxType = 0,
-                            LastInsurance = new DateTime(2024, 9, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(343),
-                            LastOilChange = new DateTime(2024, 6, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(345),
-                            LastTechnicalReview = new DateTime(2024, 3, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(295),
+                            IsRented = false,
+                            LastInsurance = new DateTime(2024, 9, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6157),
+                            LastOilChange = new DateTime(2024, 6, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6159),
+                            LastTechnicalReview = new DateTime(2024, 3, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6114),
                             MaxDistance = 900.0,
                             MaxLoad = 450.0,
                             Model = "Golf",
@@ -191,9 +197,10 @@ namespace Inzynierka.Migrations
                             FuelTankCapacity = 60.0,
                             FuelType = 5,
                             GearboxType = 1,
-                            LastInsurance = new DateTime(2024, 10, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(353),
-                            LastOilChange = new DateTime(2024, 8, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(354),
-                            LastTechnicalReview = new DateTime(2024, 7, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(352),
+                            IsRented = false,
+                            LastInsurance = new DateTime(2024, 10, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6167),
+                            LastOilChange = new DateTime(2024, 8, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6169),
+                            LastTechnicalReview = new DateTime(2024, 7, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6166),
                             MaxDistance = 1100.0,
                             MaxLoad = 480.0,
                             Model = "C-Class",
@@ -218,9 +225,10 @@ namespace Inzynierka.Migrations
                             FuelTankCapacity = 58.0,
                             FuelType = 1,
                             GearboxType = 1,
-                            LastInsurance = new DateTime(2024, 6, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(362),
-                            LastOilChange = new DateTime(2024, 4, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(363),
-                            LastTechnicalReview = new DateTime(2024, 1, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(360),
+                            IsRented = false,
+                            LastInsurance = new DateTime(2024, 6, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6176),
+                            LastOilChange = new DateTime(2024, 4, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6178),
+                            LastTechnicalReview = new DateTime(2024, 1, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6175),
                             MaxDistance = 800.0,
                             MaxLoad = 500.0,
                             Model = "CX-5",
@@ -244,7 +252,8 @@ namespace Inzynierka.Migrations
                             FuelConsumption = 0.0,
                             FuelType = 4,
                             GearboxType = 1,
-                            LastInsurance = new DateTime(2024, 9, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(369),
+                            IsRented = false,
+                            LastInsurance = new DateTime(2024, 9, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6185),
                             MaxDistance = 560.0,
                             MaxLoad = 430.0,
                             Model = "Model 3",
@@ -269,9 +278,10 @@ namespace Inzynierka.Migrations
                             FuelTankCapacity = 50.0,
                             FuelType = 1,
                             GearboxType = 0,
-                            LastInsurance = new DateTime(2024, 5, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(377),
-                            LastOilChange = new DateTime(2024, 2, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(378),
-                            LastTechnicalReview = new DateTime(2023, 12, 28, 19, 2, 29, 970, DateTimeKind.Local).AddTicks(375),
+                            IsRented = false,
+                            LastInsurance = new DateTime(2024, 5, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6192),
+                            LastOilChange = new DateTime(2024, 2, 29, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6194),
+                            LastTechnicalReview = new DateTime(2023, 12, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6191),
                             MaxDistance = 950.0,
                             MaxLoad = 470.0,
                             Model = "Duster",
@@ -300,6 +310,9 @@ namespace Inzynierka.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsBusy")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -314,6 +327,58 @@ namespace Inzynierka.Migrations
                     b.HasKey("DriverId");
 
                     b.ToTable("Drivers");
+
+                    b.HasData(
+                        new
+                        {
+                            DriverId = 1,
+                            DateOfBirth = new DateTime(1985, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "John",
+                            IsBusy = false,
+                            LastName = "Doe",
+                            PermissionNeeded = "[]",
+                            PhoneNumber = "123456789"
+                        },
+                        new
+                        {
+                            DriverId = 2,
+                            DateOfBirth = new DateTime(1990, 8, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Jane",
+                            IsBusy = false,
+                            LastName = "Smith",
+                            PermissionNeeded = "[]",
+                            PhoneNumber = "987654321"
+                        },
+                        new
+                        {
+                            DriverId = 3,
+                            DateOfBirth = new DateTime(1978, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Robert",
+                            IsBusy = false,
+                            LastName = "Johnson",
+                            PermissionNeeded = "[]",
+                            PhoneNumber = "555666777"
+                        },
+                        new
+                        {
+                            DriverId = 4,
+                            DateOfBirth = new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Emily",
+                            IsBusy = false,
+                            LastName = "Davis",
+                            PermissionNeeded = "[]",
+                            PhoneNumber = "222333444"
+                        },
+                        new
+                        {
+                            DriverId = 5,
+                            DateOfBirth = new DateTime(1980, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Michael",
+                            IsBusy = false,
+                            LastName = "Wilson",
+                            PermissionNeeded = "[]",
+                            PhoneNumber = "111222333"
+                        });
                 });
 
             modelBuilder.Entity("Inzynierka.Models.Rental", b =>

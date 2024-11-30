@@ -17,6 +17,14 @@ namespace Inzynierka.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            // Seeding kierowców
+            modelBuilder.Entity<Driver>().HasData(
+                new Driver { DriverId = 1, FirstName = "John", LastName = "Doe", PhoneNumber = "123456789", DateOfBirth = new DateTime(1985, 5, 12) },
+                new Driver { DriverId = 2, FirstName = "Jane", LastName = "Smith", PhoneNumber = "987654321", DateOfBirth = new DateTime(1990, 8, 23) },
+                new Driver { DriverId = 3, FirstName = "Robert", LastName = "Johnson", PhoneNumber = "555666777", DateOfBirth = new DateTime(1978, 3, 18) },
+                new Driver { DriverId = 4, FirstName = "Emily", LastName = "Davis", PhoneNumber = "222333444", DateOfBirth = new DateTime(1995, 11, 5) },
+                new Driver { DriverId = 5, FirstName = "Michael", LastName = "Wilson", PhoneNumber = "111222333", DateOfBirth = new DateTime(1980, 7, 29) }
+            );
             modelBuilder.Entity<Rental>()
         .HasOne(r => r.Driver)
         .WithMany(d => d.Rentals)

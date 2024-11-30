@@ -4,6 +4,7 @@
 }
 
 <h2>Rental List</h2>
+<h3><a asp-action="Create">Create Rental</a></h3>
 
 <table class="table">
     <thead>
@@ -24,6 +25,10 @@
                 <td>@rental.StartDate.ToShortDateString()</td>
                 <td>@rental.EndDate?.ToShortDateString()</td>
                 <td>@rental.Notes</td>
+                
+                <td>
+                    <a asp-action="ReturnCar" asp-route-rentalId="@rental.Id">Return</a>
+                </td>
             </tr>
         }
     </tbody>

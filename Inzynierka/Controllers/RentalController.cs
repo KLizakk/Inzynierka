@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using Inzynierka.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Inzynierka.Controllers
 {
@@ -19,34 +20,69 @@ namespace Inzynierka.Controllers
         // GET: Rental/Create
         public IActionResult Create()
         {
-            ViewBag.Drivers = _context.Drivers.ToList();
-            ViewBag.Cars = _context.Cars.ToList();
+            ViewBag.Drivers = _context.Drivers.ToList().Where(x => x.IsBusy == false);
+            ViewBag.Cars = _context.Cars.ToList().Where(x=> x.IsRented == false);
             return View();
         }
 
         // POST: Rental/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DriverId,RegistrationNumber,StartDate,EndDate,Notes")] Rental rental)
+        public async Task<IActionResult> Create([Bind("RegistrationNumber,DriverId,StartDate,EndDate,Notes")] Rental rental)
         {
-            rental.Car = _context.Cars.Find(rental.RegistrationNumber);
-            rental.Driver = _context.Drivers.Find(rental.DriverId);
-
-            if(rental.Car == null || rental.Driver == null)
-            {
-                ViewBag.Drivers = _context.Drivers.ToList();
-                ViewBag.Cars = _context.Cars.ToList();
-                return View(rental);
-            }
-
-            else{ 
-             _context.Add(rental);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-            }
             
+                var car = await _context.Cars.FindAsync(rental.RegistrationNumber);
+                if (car == null || car.IsRented)
+                {
+                    ModelState.AddModelError("", "Selected car is not available.");
+                    ViewBag.Drivers = new SelectList(_context.Drivers, "DriverId", "FullName");
+                    ViewBag.Cars = _context.Cars.Where(c => !c.IsRented).ToList();
+                    return View(rental);
+                }
+                var driver = await _context.Drivers.FindAsync(rental.DriverId);
+            if (driver == null || driver.IsBusy)
+                {
+                    ModelState.AddModelError("", "Selected driver is not avalible .");
+                    ViewBag.Drivers = new SelectList(_context.Drivers, "DriverId", "FullName");
+                    ViewBag.Cars = _context.Cars.Where(c => !c.IsRented).ToList();
+                    return View(rental);
+                }
+                
+                car.IsRented = true;
+                driver.IsBusy = true;
+                _context.Add(rental);   
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
             
+           
         }
+        public async Task<IActionResult> ReturnCar(int rentalId)
+        {
+            var rental = await _context.Rentals
+                .Include(r => r.Car)
+                .Include(r => r.Driver)
+                .FirstOrDefaultAsync(r => r.Id == rentalId);
+
+            if (rental == null)
+            {
+                return NotFound();
+            }
+
+            // Ustawienie samochodu jako dostępnego
+            rental.Car.IsRented = false;
+            rental.Driver.IsBusy = false;
+            // Zakończenie wypożyczenia
+            rental.EndDate = DateTime.Now;
+
+            // Aktualizacja bazy danych
+            _context.Update(rental.Car);
+            //_context.Remove(rental); // Jeśli chcesz usunąć rekord wypożyczenia, inaczej usuń tę linię
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
 
         // GET: Rental/Index
         public async Task<IActionResult> Index()

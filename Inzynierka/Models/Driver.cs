@@ -20,5 +20,6 @@ namespace Inzynierka.Models
         // Lista wypożyczeń kierowcy
         public List<Rental>? Rentals { get; set; } = new List<Rental>();
 
+        public bool IsBusy { get; set; }
     }
 }

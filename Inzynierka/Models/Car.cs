@@ -13,6 +13,7 @@ namespace Inzynierka.Models
         public PermissionNeeded? PermissionNeeded { get; set; }
         public string? Description { get; set; }
 
+        public bool IsRented { get; set; }
         //Pomocnicze
         [NotMapped]
         public int? DaysUntilNextTechnicalReview => LastTechnicalReview.HasValue
