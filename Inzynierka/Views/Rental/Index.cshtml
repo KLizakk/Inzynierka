@@ -25,6 +25,14 @@
                 <td>@rental.StartDate.ToShortDateString()</td>
                 <td>@rental.EndDate?.ToShortDateString()</td>
                 <td>@rental.Notes</td>
+                <td>
+                    <a asp-action="History" asp-route-registrationNumber="@rental.Car.RegistrationNumber">View Car History</a>
+
+                </td> 
+                <td>
+                    <a asp-action="History" asp-route-driverId="@rental.Driver.DriverId">View Driver History</a>
+                </td>
+                    
                 
                 <td>
                     <a asp-action="ReturnCar" asp-route-rentalId="@rental.Id">Return</a>

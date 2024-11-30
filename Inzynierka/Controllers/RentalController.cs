@@ -57,6 +57,7 @@ namespace Inzynierka.Controllers
             
            
         }
+        
         public async Task<IActionResult> ReturnCar(int rentalId)
         {
             var rental = await _context.Rentals
@@ -82,7 +83,32 @@ namespace Inzynierka.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        // GET: Rentals/History
+        public async Task<IActionResult> History(string registrationNumber = null, int? driverId = null)
+        {
+            // Pobieramy listę wypożyczeń z powiązanymi autami i kierowcami
+            var rentalsQuery = _context.Rentals
+                                       .Include(r => r.Car)
+                                       .Include(r => r.Driver)
+                                       .AsQueryable();
 
+            // Filtracja według numeru rejestracyjnego auta
+            if (!string.IsNullOrEmpty(registrationNumber))
+            {
+                rentalsQuery = rentalsQuery.Where(r => r.Car.RegistrationNumber == registrationNumber);
+            }
+
+            // Filtracja według ID kierowcy
+            if (driverId.HasValue)
+            {
+                rentalsQuery = rentalsQuery.Where(r => r.Driver.DriverId == driverId.Value);
+            }
+
+            // Pobranie wyników
+            var rentals = await rentalsQuery.ToListAsync();
+
+            return View(rentals);
+        }
 
         // GET: Rental/Index
         public async Task<IActionResult> Index()

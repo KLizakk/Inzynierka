@@ -246,11 +246,11 @@ namespace Inzynierka.Migrations
                 values: new object[,]
                 {
                     { "ABC12345", "Tesla", 0, "Electric sedan", 2, 0, 6, 0.0, null, 4, 1, false, null, null, null, 600.0, 500.0, "Model S", 4, 1, 5, 1, 2021, 80.0, "5YJSA1E26MF123456" },
-                    { "GD9988LK", "Dacia", 2, "Affordable off-road SUV", 0, 1500, 4, 5.2999999999999998, 50.0, 1, 0, false, new DateTime(2024, 5, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6192), new DateTime(2024, 2, 29, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6194), new DateTime(2023, 12, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6191), 950.0, 470.0, "Duster", 5, 5, 5, 1, 2017, 60.0, "UU1KSDMJ455123456" },
-                    { "KR6789XYZ", "Mercedes-Benz", 0, "Luxury sedan", 1, 2000, 5, 4.7999999999999998, 60.0, 5, 1, false, new DateTime(2024, 10, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6167), new DateTime(2024, 8, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6169), new DateTime(2024, 7, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6166), 1100.0, 480.0, "C-Class", 4, 9, 5, 1, 2021, 90.0, "WDD2050741F123456" },
-                    { "PL1234ABC", "Volkswagen", 1, "Popular compact car", 0, 1600, 5, 5.5, 50.0, 1, 0, false, new DateTime(2024, 9, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6157), new DateTime(2024, 6, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6159), new DateTime(2024, 3, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6114), 900.0, 450.0, "Golf", 5, 6, 5, 1, 2020, 80.0, "WVWZZZ1KZ6P123456" },
-                    { "PO1122RT", "Tesla", 0, "Electric car", 2, 0, 6, 0.0, null, 4, 1, false, new DateTime(2024, 9, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6185), null, null, 560.0, 430.0, "Model 3", 4, 1, 5, 1, 2022, 85.0, "5YJ3E1EA7KF123456" },
-                    { "WA4455GH", "Mazda", 2, "Mid-size SUV", 2, 2200, 5, 7.2000000000000002, 58.0, 1, 1, false, new DateTime(2024, 6, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6176), new DateTime(2024, 4, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6178), new DateTime(2024, 1, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6175), 800.0, 500.0, "CX-5", 5, 6, 5, 1, 2018, 75.0, "JMZKF1W1A01234567" },
+                    { "GD9988LK", "Dacia", 2, "Affordable off-road SUV", 0, 1500, 4, 5.2999999999999998, 50.0, 1, 0, false, new DateTime(2024, 5, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5547), new DateTime(2024, 2, 29, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5549), new DateTime(2023, 12, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5546), 950.0, 470.0, "Duster", 5, 5, 5, 1, 2017, 60.0, "UU1KSDMJ455123456" },
+                    { "KR6789XYZ", "Mercedes-Benz", 0, "Luxury sedan", 1, 2000, 5, 4.7999999999999998, 60.0, 5, 1, false, new DateTime(2024, 10, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5523), new DateTime(2024, 8, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5525), new DateTime(2024, 7, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5522), 1100.0, 480.0, "C-Class", 4, 9, 5, 1, 2021, 90.0, "WDD2050741F123456" },
+                    { "PL1234ABC", "Volkswagen", 1, "Popular compact car", 0, 1600, 5, 5.5, 50.0, 1, 0, false, new DateTime(2024, 9, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5513), new DateTime(2024, 6, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5515), new DateTime(2024, 3, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5463), 900.0, 450.0, "Golf", 5, 6, 5, 1, 2020, 80.0, "WVWZZZ1KZ6P123456" },
+                    { "PO1122RT", "Tesla", 0, "Electric car", 2, 0, 6, 0.0, null, 4, 1, false, new DateTime(2024, 9, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5540), null, null, 560.0, 430.0, "Model 3", 4, 1, 5, 1, 2022, 85.0, "5YJ3E1EA7KF123456" },
+                    { "WA4455GH", "Mazda", 2, "Mid-size SUV", 2, 2200, 5, 7.2000000000000002, 58.0, 1, 1, false, new DateTime(2024, 6, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5533), new DateTime(2024, 4, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5534), new DateTime(2024, 1, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5531), 800.0, 500.0, "CX-5", 5, 6, 5, 1, 2018, 75.0, "JMZKF1W1A01234567" },
                     { "XYZ98765", "Honda", 1, "Compact car", 0, 1800, 5, 6.5, 45.0, 0, 0, false, null, null, null, 700.0, 400.0, "Civic", 5, 6, 5, 1, 2019, 70.0, "1HGEM21901L123456" }
                 });
 
@@ -259,11 +259,11 @@ namespace Inzynierka.Migrations
                 columns: new[] { "DriverId", "DateOfBirth", "FirstName", "IsBusy", "LastName", "PermissionNeeded", "PhoneNumber" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(1985, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "John", false, "Doe", "[]", "123456789" },
-                    { 2, new DateTime(1990, 8, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jane", false, "Smith", "[]", "987654321" },
-                    { 3, new DateTime(1978, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Robert", false, "Johnson", "[]", "555666777" },
-                    { 4, new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Emily", false, "Davis", "[]", "222333444" },
-                    { 5, new DateTime(1980, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), "Michael", false, "Wilson", "[]", "111222333" }
+                    { 1, new DateTime(1985, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "John", false, "Doe", "[1]", "123456789" },
+                    { 2, new DateTime(1990, 8, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jane", false, "Smith", "[1,4]", "987654321" },
+                    { 3, new DateTime(1978, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Robert", false, "Johnson", "[2]", "555666777" },
+                    { 4, new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Emily", false, "Davis", "[1,3]", "222333444" },
+                    { 5, new DateTime(1980, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), "Michael", false, "Wilson", "[5]", "111222333" }
                 });
 
             migrationBuilder.CreateIndex(

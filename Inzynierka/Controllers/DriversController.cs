@@ -90,7 +90,7 @@ namespace Inzynierka.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DriverId,FirstName,PhoneNumber,DateOfBirth,PermissionNeeded")] Driver driver, List<PermissionNeeded> selectedPermissions)
+        public async Task<IActionResult> Edit(int id, [Bind("DriverId,FirstName,LastName,PhoneNumber,DateOfBirth,PermissionNeeded")] Driver driver, List<PermissionNeeded> selectedPermissions)
         {
             if (id != driver.DriverId)
             {

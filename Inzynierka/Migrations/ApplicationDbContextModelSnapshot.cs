@@ -170,9 +170,9 @@ namespace Inzynierka.Migrations
                             FuelType = 1,
                             GearboxType = 0,
                             IsRented = false,
-                            LastInsurance = new DateTime(2024, 9, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6157),
-                            LastOilChange = new DateTime(2024, 6, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6159),
-                            LastTechnicalReview = new DateTime(2024, 3, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6114),
+                            LastInsurance = new DateTime(2024, 9, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5513),
+                            LastOilChange = new DateTime(2024, 6, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5515),
+                            LastTechnicalReview = new DateTime(2024, 3, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5463),
                             MaxDistance = 900.0,
                             MaxLoad = 450.0,
                             Model = "Golf",
@@ -198,9 +198,9 @@ namespace Inzynierka.Migrations
                             FuelType = 5,
                             GearboxType = 1,
                             IsRented = false,
-                            LastInsurance = new DateTime(2024, 10, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6167),
-                            LastOilChange = new DateTime(2024, 8, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6169),
-                            LastTechnicalReview = new DateTime(2024, 7, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6166),
+                            LastInsurance = new DateTime(2024, 10, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5523),
+                            LastOilChange = new DateTime(2024, 8, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5525),
+                            LastTechnicalReview = new DateTime(2024, 7, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5522),
                             MaxDistance = 1100.0,
                             MaxLoad = 480.0,
                             Model = "C-Class",
@@ -226,9 +226,9 @@ namespace Inzynierka.Migrations
                             FuelType = 1,
                             GearboxType = 1,
                             IsRented = false,
-                            LastInsurance = new DateTime(2024, 6, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6176),
-                            LastOilChange = new DateTime(2024, 4, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6178),
-                            LastTechnicalReview = new DateTime(2024, 1, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6175),
+                            LastInsurance = new DateTime(2024, 6, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5533),
+                            LastOilChange = new DateTime(2024, 4, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5534),
+                            LastTechnicalReview = new DateTime(2024, 1, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5531),
                             MaxDistance = 800.0,
                             MaxLoad = 500.0,
                             Model = "CX-5",
@@ -253,7 +253,7 @@ namespace Inzynierka.Migrations
                             FuelType = 4,
                             GearboxType = 1,
                             IsRented = false,
-                            LastInsurance = new DateTime(2024, 9, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6185),
+                            LastInsurance = new DateTime(2024, 9, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5540),
                             MaxDistance = 560.0,
                             MaxLoad = 430.0,
                             Model = "Model 3",
@@ -279,9 +279,9 @@ namespace Inzynierka.Migrations
                             FuelType = 1,
                             GearboxType = 0,
                             IsRented = false,
-                            LastInsurance = new DateTime(2024, 5, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6192),
-                            LastOilChange = new DateTime(2024, 2, 29, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6194),
-                            LastTechnicalReview = new DateTime(2023, 12, 30, 15, 30, 22, 499, DateTimeKind.Local).AddTicks(6191),
+                            LastInsurance = new DateTime(2024, 5, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5547),
+                            LastOilChange = new DateTime(2024, 2, 29, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5549),
+                            LastTechnicalReview = new DateTime(2023, 12, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5546),
                             MaxDistance = 950.0,
                             MaxLoad = 470.0,
                             Model = "Duster",
@@ -336,7 +336,7 @@ namespace Inzynierka.Migrations
                             FirstName = "John",
                             IsBusy = false,
                             LastName = "Doe",
-                            PermissionNeeded = "[]",
+                            PermissionNeeded = "[1]",
                             PhoneNumber = "123456789"
                         },
                         new
@@ -346,7 +346,7 @@ namespace Inzynierka.Migrations
                             FirstName = "Jane",
                             IsBusy = false,
                             LastName = "Smith",
-                            PermissionNeeded = "[]",
+                            PermissionNeeded = "[1,4]",
                             PhoneNumber = "987654321"
                         },
                         new
@@ -356,7 +356,7 @@ namespace Inzynierka.Migrations
                             FirstName = "Robert",
                             IsBusy = false,
                             LastName = "Johnson",
-                            PermissionNeeded = "[]",
+                            PermissionNeeded = "[2]",
                             PhoneNumber = "555666777"
                         },
                         new
@@ -366,7 +366,7 @@ namespace Inzynierka.Migrations
                             FirstName = "Emily",
                             IsBusy = false,
                             LastName = "Davis",
-                            PermissionNeeded = "[]",
+                            PermissionNeeded = "[1,3]",
                             PhoneNumber = "222333444"
                         },
                         new
@@ -376,7 +376,7 @@ namespace Inzynierka.Migrations
                             FirstName = "Michael",
                             IsBusy = false,
                             LastName = "Wilson",
-                            PermissionNeeded = "[]",
+                            PermissionNeeded = "[5]",
                             PhoneNumber = "111222333"
                         });
                 });
