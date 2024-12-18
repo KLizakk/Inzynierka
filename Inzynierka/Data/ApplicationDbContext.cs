@@ -1,4 +1,6 @@
-﻿using Inzynierka.Models;
+﻿using Bogus.DataSets;
+using Inzynierka.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +19,27 @@ namespace Inzynierka.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            // Seeding kierowców
+            // Seed Roles
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
+                },
+                new IdentityRole
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "Kierowca",
+                    NormalizedName = "KIEROWCA"
+                },
+                new IdentityRole
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "Koordynator",
+                    NormalizedName = "KOORDYNATOR"
+                }
+            );
             // Seeding kierowców
             modelBuilder.Entity<Driver>().HasData(
                 new Driver
@@ -278,6 +300,8 @@ new Car
                 );
 
         }
+
+        
 
     }
 }

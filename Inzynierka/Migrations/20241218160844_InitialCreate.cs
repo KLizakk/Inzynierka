@@ -241,16 +241,26 @@ namespace Inzynierka.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "4635cf1c-a464-479a-a5a1-0c1fcec93d21", null, "Koordynator", "KOORDYNATOR" },
+                    { "c232c45b-7e53-4c45-853e-258bb35daf37", null, "Kierowca", "KIEROWCA" },
+                    { "f81dff0f-9efd-44cb-ac7f-b8743988739a", null, "Admin", "ADMIN" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Cars",
                 columns: new[] { "RegistrationNumber", "Brand", "CarType", "Description", "DriveType", "EngineCapacity", "ExhaustGasEmissionCategory", "FuelConsumption", "FuelTankCapacity", "FuelType", "GearboxType", "IsRented", "LastInsurance", "LastOilChange", "LastTechnicalReview", "MaxDistance", "MaxLoad", "Model", "NumberOfDoors", "NumberOfGears", "NumberOfSeats", "PermissionNeeded", "ProductionYear", "TreadCondition", "VIN" },
                 values: new object[,]
                 {
                     { "ABC12345", "Tesla", 0, "Electric sedan", 2, 0, 6, 0.0, null, 4, 1, false, null, null, null, 600.0, 500.0, "Model S", 4, 1, 5, 1, 2021, 80.0, "5YJSA1E26MF123456" },
-                    { "GD9988LK", "Dacia", 2, "Affordable off-road SUV", 0, 1500, 4, 5.2999999999999998, 50.0, 1, 0, false, new DateTime(2024, 5, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5547), new DateTime(2024, 2, 29, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5549), new DateTime(2023, 12, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5546), 950.0, 470.0, "Duster", 5, 5, 5, 1, 2017, 60.0, "UU1KSDMJ455123456" },
-                    { "KR6789XYZ", "Mercedes-Benz", 0, "Luxury sedan", 1, 2000, 5, 4.7999999999999998, 60.0, 5, 1, false, new DateTime(2024, 10, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5523), new DateTime(2024, 8, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5525), new DateTime(2024, 7, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5522), 1100.0, 480.0, "C-Class", 4, 9, 5, 1, 2021, 90.0, "WDD2050741F123456" },
-                    { "PL1234ABC", "Volkswagen", 1, "Popular compact car", 0, 1600, 5, 5.5, 50.0, 1, 0, false, new DateTime(2024, 9, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5513), new DateTime(2024, 6, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5515), new DateTime(2024, 3, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5463), 900.0, 450.0, "Golf", 5, 6, 5, 1, 2020, 80.0, "WVWZZZ1KZ6P123456" },
-                    { "PO1122RT", "Tesla", 0, "Electric car", 2, 0, 6, 0.0, null, 4, 1, false, new DateTime(2024, 9, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5540), null, null, 560.0, 430.0, "Model 3", 4, 1, 5, 1, 2022, 85.0, "5YJ3E1EA7KF123456" },
-                    { "WA4455GH", "Mazda", 2, "Mid-size SUV", 2, 2200, 5, 7.2000000000000002, 58.0, 1, 1, false, new DateTime(2024, 6, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5533), new DateTime(2024, 4, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5534), new DateTime(2024, 1, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5531), 800.0, 500.0, "CX-5", 5, 6, 5, 1, 2018, 75.0, "JMZKF1W1A01234567" },
+                    { "GD9988LK", "Dacia", 2, "Affordable off-road SUV", 0, 1500, 4, 5.2999999999999998, 50.0, 1, 0, false, new DateTime(2024, 6, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2975), new DateTime(2024, 3, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2976), new DateTime(2024, 1, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2974), 950.0, 470.0, "Duster", 5, 5, 5, 1, 2017, 60.0, "UU1KSDMJ455123456" },
+                    { "KR6789XYZ", "Mercedes-Benz", 0, "Luxury sedan", 1, 2000, 5, 4.7999999999999998, 60.0, 5, 1, false, new DateTime(2024, 11, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2944), new DateTime(2024, 9, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2945), new DateTime(2024, 8, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2943), 1100.0, 480.0, "C-Class", 4, 9, 5, 1, 2021, 90.0, "WDD2050741F123456" },
+                    { "PL1234ABC", "Volkswagen", 1, "Popular compact car", 0, 1600, 5, 5.5, 50.0, 1, 0, false, new DateTime(2024, 10, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2931), new DateTime(2024, 7, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2934), new DateTime(2024, 4, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2881), 900.0, 450.0, "Golf", 5, 6, 5, 1, 2020, 80.0, "WVWZZZ1KZ6P123456" },
+                    { "PO1122RT", "Tesla", 0, "Electric car", 2, 0, 6, 0.0, null, 4, 1, false, new DateTime(2024, 10, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2965), null, null, 560.0, 430.0, "Model 3", 4, 1, 5, 1, 2022, 85.0, "5YJ3E1EA7KF123456" },
+                    { "WA4455GH", "Mazda", 2, "Mid-size SUV", 2, 2200, 5, 7.2000000000000002, 58.0, 1, 1, false, new DateTime(2024, 7, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2957), new DateTime(2024, 5, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2959), new DateTime(2024, 2, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2956), 800.0, 500.0, "CX-5", 5, 6, 5, 1, 2018, 75.0, "JMZKF1W1A01234567" },
                     { "XYZ98765", "Honda", 1, "Compact car", 0, 1800, 5, 6.5, 45.0, 0, 0, false, null, null, null, 700.0, 400.0, "Civic", 5, 6, 5, 1, 2019, 70.0, "1HGEM21901L123456" }
                 });
 

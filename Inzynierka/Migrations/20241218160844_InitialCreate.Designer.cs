@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inzynierka.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241130145436_InitialCreate")]
+    [Migration("20241218160844_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -173,9 +173,9 @@ namespace Inzynierka.Migrations
                             FuelType = 1,
                             GearboxType = 0,
                             IsRented = false,
-                            LastInsurance = new DateTime(2024, 9, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5513),
-                            LastOilChange = new DateTime(2024, 6, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5515),
-                            LastTechnicalReview = new DateTime(2024, 3, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5463),
+                            LastInsurance = new DateTime(2024, 10, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2931),
+                            LastOilChange = new DateTime(2024, 7, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2934),
+                            LastTechnicalReview = new DateTime(2024, 4, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2881),
                             MaxDistance = 900.0,
                             MaxLoad = 450.0,
                             Model = "Golf",
@@ -201,9 +201,9 @@ namespace Inzynierka.Migrations
                             FuelType = 5,
                             GearboxType = 1,
                             IsRented = false,
-                            LastInsurance = new DateTime(2024, 10, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5523),
-                            LastOilChange = new DateTime(2024, 8, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5525),
-                            LastTechnicalReview = new DateTime(2024, 7, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5522),
+                            LastInsurance = new DateTime(2024, 11, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2944),
+                            LastOilChange = new DateTime(2024, 9, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2945),
+                            LastTechnicalReview = new DateTime(2024, 8, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2943),
                             MaxDistance = 1100.0,
                             MaxLoad = 480.0,
                             Model = "C-Class",
@@ -229,9 +229,9 @@ namespace Inzynierka.Migrations
                             FuelType = 1,
                             GearboxType = 1,
                             IsRented = false,
-                            LastInsurance = new DateTime(2024, 6, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5533),
-                            LastOilChange = new DateTime(2024, 4, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5534),
-                            LastTechnicalReview = new DateTime(2024, 1, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5531),
+                            LastInsurance = new DateTime(2024, 7, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2957),
+                            LastOilChange = new DateTime(2024, 5, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2959),
+                            LastTechnicalReview = new DateTime(2024, 2, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2956),
                             MaxDistance = 800.0,
                             MaxLoad = 500.0,
                             Model = "CX-5",
@@ -256,7 +256,7 @@ namespace Inzynierka.Migrations
                             FuelType = 4,
                             GearboxType = 1,
                             IsRented = false,
-                            LastInsurance = new DateTime(2024, 9, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5540),
+                            LastInsurance = new DateTime(2024, 10, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2965),
                             MaxDistance = 560.0,
                             MaxLoad = 430.0,
                             Model = "Model 3",
@@ -282,9 +282,9 @@ namespace Inzynierka.Migrations
                             FuelType = 1,
                             GearboxType = 0,
                             IsRented = false,
-                            LastInsurance = new DateTime(2024, 5, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5547),
-                            LastOilChange = new DateTime(2024, 2, 29, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5549),
-                            LastTechnicalReview = new DateTime(2023, 12, 30, 15, 54, 35, 961, DateTimeKind.Local).AddTicks(5546),
+                            LastInsurance = new DateTime(2024, 6, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2975),
+                            LastOilChange = new DateTime(2024, 3, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2976),
+                            LastTechnicalReview = new DateTime(2024, 1, 18, 17, 8, 44, 128, DateTimeKind.Local).AddTicks(2974),
                             MaxDistance = 950.0,
                             MaxLoad = 470.0,
                             Model = "Duster",
@@ -442,6 +442,26 @@ namespace Inzynierka.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "f81dff0f-9efd-44cb-ac7f-b8743988739a",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "c232c45b-7e53-4c45-853e-258bb35daf37",
+                            Name = "Kierowca",
+                            NormalizedName = "KIEROWCA"
+                        },
+                        new
+                        {
+                            Id = "4635cf1c-a464-479a-a5a1-0c1fcec93d21",
+                            Name = "Koordynator",
+                            NormalizedName = "KOORDYNATOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
