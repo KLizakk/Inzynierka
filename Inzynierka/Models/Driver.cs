@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using Microsoft.AspNetCore.Identity;
 namespace Inzynierka.Models
 {
     public class Driver
@@ -21,5 +21,9 @@ namespace Inzynierka.Models
         public List<Rental>? Rentals { get; set; } = new List<Rental>();
 
         public bool IsBusy { get; set; }
+        // Przypisany użytkownik
+        [ForeignKey("User")]
+        public string? UserId { get; set; } // Klucz obcy do IdentityUser
+        public IdentityUser? User { get; set; } // Nawigacja do użytkownika
     }
 }
