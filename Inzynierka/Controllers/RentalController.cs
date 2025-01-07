@@ -5,9 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Inzynierka.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Inzynierka.Controllers
 {
+    [Authorize(Roles = "Admin,Koordynator")]
     public class RentalController : Controller
     {
         private readonly ApplicationDbContext _context;

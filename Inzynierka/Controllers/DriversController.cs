@@ -47,6 +47,7 @@ namespace Inzynierka.Controllers
         public IActionResult Create()
         {
             ViewBag.Permissions = Enum.GetValues(typeof(PermissionNeeded)).Cast<PermissionNeeded>().ToList();
+            ViewBag.Users = new SelectList(_context.Users, "Id", "UserName"); // Lista użytkowników ASP.NET Identity
             return View();
         }
 
@@ -55,16 +56,18 @@ namespace Inzynierka.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FirstName,LastName,PhoneNumber,DateOfBirth,PermissionNeeded")] Driver driver, List<PermissionNeeded> selectedPermissions)
+        public async Task<IActionResult> Create([Bind("FirstName,LastName,PhoneNumber,DateOfBirth,PermissionNeeded,UserId")] Driver driver, List<PermissionNeeded> selectedPermissions)
         {
             if (ModelState.IsValid)
             {
-               driver.PermissionNeeded = selectedPermissions;
+                driver.PermissionNeeded = selectedPermissions;
                 _context.Add(driver);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             ViewBag.Permissions = Enum.GetValues(typeof(PermissionNeeded)).Cast<PermissionNeeded>().ToList();
+            ViewBag.Users = new SelectList(_context.Users, "Id", "UserName");
             return View(driver);
         }
 
