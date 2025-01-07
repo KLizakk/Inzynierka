@@ -3,39 +3,82 @@
     ViewBag.Title = "Rental List";
 }
 
-<h2>Rental List</h2>
-<h3><a asp-action="Create">Create Rental</a></h3>
+<h2 class="text-primary mb-4">Rental List</h2>
+<h3>
+    <a asp-action="Create" class="btn btn-success mb-3">
+        <i class="fas fa-plus-circle"></i> Create Rental
+    </a>
+</h3>
 
-<table class="table">
-    <thead>
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
         <tr>
             <th>Driver</th>
             <th>Car</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th>Notes</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var rental in Model)
         {
-            <tr>
-                <td>@rental.Driver.FullName</td>
-                <td>@rental.Car.RegistrationNumber</td>
-                <td>@rental.StartDate.ToShortDateString()</td>
-                <td>@rental.EndDate?.ToShortDateString()</td>
-                <td>@rental.Notes</td>
-                <td>
-                    <a asp-action="History" asp-route-registrationNumber="@rental.Car.RegistrationNumber">View Car History</a>
+            // Sprawdzanie pustych pól
+            var isEndDateEmpty = !rental.EndDate.HasValue || rental.EndDate == DateTime.MinValue;
+            var isNotesEmpty = string.IsNullOrWhiteSpace(rental.Notes);
 
-                </td> 
+            <tr>
+                <!-- Driver -->
                 <td>
-                    <a asp-action="History" asp-route-driverId="@rental.Driver.DriverId">View Driver History</a>
+                    @rental.Driver.FullName
                 </td>
-                    
-                
+
+                <!-- Car -->
                 <td>
-                    <a asp-action="ReturnCar" asp-route-rentalId="@rental.Id">Return</a>
+                    @rental.Car.RegistrationNumber
+                </td>
+
+                <!-- Start Date -->
+                <td>
+                    @rental.StartDate.ToShortDateString()
+                </td>
+
+                <!-- End Date -->
+                <td class="@(isEndDateEmpty ? "table-warning" : "")">
+                    @if (!isEndDateEmpty)
+                    {
+                        @rental.EndDate?.ToShortDateString()
+                    }
+                </td>
+
+                <!-- Notes -->
+                <td class="@(isNotesEmpty ? "table-warning" : "")">
+                    @if (!isNotesEmpty)
+                    {
+                        @rental.Notes
+                    }
+                </td>
+
+                <!-- Actions -->
+                <td class="d-flex gap-2">
+                    <!-- View Car History -->
+                    <a asp-action="History" asp-route-registrationNumber="@rental.Car.RegistrationNumber"
+                       class="btn btn-info btn-sm">
+                        <i class="fas fa-car"></i> Car History
+                    </a>
+
+                    <!-- View Driver History -->
+                    <a asp-action="History" asp-route-driverId="@rental.Driver.DriverId"
+                       class="btn btn-info btn-sm">
+                        <i class="fas fa-user"></i> Driver History
+                    </a>
+
+                    <!-- Return Car -->
+                    <a asp-action="ReturnCar" asp-route-rentalId="@rental.Id"
+                       class="btn btn-warning btn-sm">
+                        <i class="fas fa-undo"></i> Return
+                    </a>
                 </td>
             </tr>
         }

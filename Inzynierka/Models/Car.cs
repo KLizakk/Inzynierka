@@ -6,11 +6,22 @@ namespace Inzynierka.Models
     public class Car
     {
         [Key]
+        [Required(ErrorMessage = "Registration number is required.")]
         public string RegistrationNumber { get; set; }
+
+        [Required(ErrorMessage = "Model is required.")]
         public string Model { get; set; }
+
+        [Required(ErrorMessage = "Brand is required.")]
         public string Brand { get; set; }
+
+        [Required(ErrorMessage = "VIN is required.")]
         public string VIN { get; set; }
+
+        [Required(ErrorMessage = "Permission needed is required.")]
         public PermissionNeeded? PermissionNeeded { get; set; }
+
+        [StringLength(500, ErrorMessage = "Description cannot be longer than 500 characters.")]
         public string? Description { get; set; }
 
         public bool IsRented { get; set; }

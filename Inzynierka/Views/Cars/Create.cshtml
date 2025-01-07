@@ -1,58 +1,75 @@
 ﻿@model Inzynierka.Models.Car
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Car";
 }
 
-<h1>Create</h1>
-
-<h4>Car</h4>
+<h1 class="text-primary">Create New Car</h1>
+<h4 class="mb-4">Please provide the details of the car</h4>
 <hr />
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <!-- Registration Number -->
             <div class="form-group">
                 <label asp-for="RegistrationNumber" class="control-label"></label>
                 <input asp-for="RegistrationNumber" class="form-control" />
                 <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
             </div>
+
+            <!-- Model -->
             <div class="form-group">
                 <label asp-for="Model" class="control-label"></label>
                 <input asp-for="Model" class="form-control" />
                 <span asp-validation-for="Model" class="text-danger"></span>
             </div>
+
+            <!-- Brand -->
             <div class="form-group">
                 <label asp-for="Brand" class="control-label"></label>
                 <input asp-for="Brand" class="form-control" />
                 <span asp-validation-for="Brand" class="text-danger"></span>
             </div>
+
+            <!-- VIN -->
             <div class="form-group">
                 <label asp-for="VIN" class="control-label"></label>
                 <input asp-for="VIN" class="form-control" />
                 <span asp-validation-for="VIN" class="text-danger"></span>
             </div>
-            <div>
+
+            <!-- Permission Needed -->
+            <div class="form-group">
                 @Html.LabelFor(m => m.PermissionNeeded)
                 @Html.DropDownListFor(m => m.PermissionNeeded, (SelectList)ViewBag.PermissionNeededList, "Select Permission", new { @class = "form-control" })
+                <span asp-validation-for="PermissionNeeded" class="text-danger"></span>
             </div>
+
+            <!-- Description -->
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-           
+
+            <!-- Submit Button -->
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-success btn-lg" />
             </div>
         </form>
     </div>
 </div>
 
+<!-- Back to List Link -->
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

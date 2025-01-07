@@ -1,59 +1,73 @@
 ﻿@model IEnumerable<Inzynierka.Models.Driver>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Drivers";
 }
 
-<h1>Index</h1>
+<div class="container mt-4">
+    <h1 class="mb-4"><i class="fas fa-users icon-circle"></i> Drivers</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateOfBirth)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PermissionNeeded)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfBirth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PermissionNeeded)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.DriverId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DriverId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DriverId">Delete</a>
-            </td>
-        </tr>
+    <p class="mb-3">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus-circle"></i> Add New Driver
+        </a>
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                    <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                    <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                    <th>@Html.DisplayNameFor(model => model.DateOfBirth)</th>
+                    <th>@Html.DisplayNameFor(model => model.PermissionNeeded)</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    // Sprawdzanie pustych pól
+                    var isDateOfBirthEmpty = item.DateOfBirth == DateTime.MinValue;
+                    var isPermissionEmpty = item.PermissionNeeded == null || !item.PermissionNeeded.Any();
+
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+
+                        <!-- Date of Birth -->
+                        <td class="@(isDateOfBirthEmpty ? "table-warning" : "")">
+                            @Html.DisplayFor(modelItem => item.DateOfBirth)
+                        </td>
+
+                        <!-- Permissions -->
+                        <td class="@(isPermissionEmpty ? "table-warning" : "")">
+                            @if (!isPermissionEmpty)
+                            {
+                                @string.Join(", ", item.PermissionNeeded)
+                            }
+                        </td>
+
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-route-id="@item.DriverId" class="btn btn-sm btn-warning">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a asp-action="Details" asp-route-id="@item.DriverId" class="btn btn-sm btn-info">
+                                <i class="fas fa-info-circle"></i> Details
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.DriverId" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 }
-    </tbody>
-</table>
