@@ -1,115 +1,93 @@
 ﻿@model IEnumerable<Inzynierka.Models.Car>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Cars";
 }
 
-<h1>Index</h1>
+<div class="container mt-4">
+    <h1 class="mb-4"><i class="fas fa-car icon-circle"></i> Fleet Overview</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Model)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Brand)
-            </th>
-            
-            <th>
-                @Html.DisplayNameFor(model => model.PermissionNeeded)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            
-            
-            <th>
-                @Html.DisplayNameFor(model => model.CarType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExhaustGasEmissionCategory)
-            </th>
-            
-          
-            
-            
-            
-            <th>
-                @Html.DisplayNameFor(model => model.LastTechnicalReview)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastInsurance)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastOilChange)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FuelConsumption)
-            </th>
-            
-            
-            <th>
-                @Html.DisplayNameFor(model => model.MaxLoad)
-            </th>
-            
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.PermissionNeeded)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.CarType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExhaustGasEmissionCategory)
-            </td>
-           
-            
-           
-           
-            
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.LastTechnicalReview)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastInsurance)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastOilChange)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FuelConsumption)
-            </td>
-            
-            
-            
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RegistrationNumber">Edit</a> 
-                <a asp-action="Details" asp-route-id="@item.RegistrationNumber">Details</a> 
-                <a asp-action="Delete" asp-route-id="@item.RegistrationNumber">Delete</a>
-            </td>
-        </tr>
+    <p class="mb-3">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus-circle"></i> Add New Car
+        </a>
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Model)</th>
+                    <th>@Html.DisplayNameFor(model => model.Brand)</th>
+                    <th>@Html.DisplayNameFor(model => model.PermissionNeeded)</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                    <th>@Html.DisplayNameFor(model => model.CarType)</th>
+                    <th>@Html.DisplayNameFor(model => model.ExhaustGasEmissionCategory)</th>
+                    <th>@Html.DisplayNameFor(model => model.LastTechnicalReview)</th>
+                    <th>@Html.DisplayNameFor(model => model.LastInsurance)</th>
+                    <th>@Html.DisplayNameFor(model => model.LastOilChange)</th>
+                    <th>@Html.DisplayNameFor(model => model.FuelConsumption)</th>
+                    <th>@Html.DisplayNameFor(model => model.MaxLoad)</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    // Sprawdzanie dat
+                    var today = DateTime.Today;
+                    var isOilChangeOutdated = item.LastOilChange.HasValue && (today - item.LastOilChange.Value).TotalDays > 365;
+                    var isReviewOutdated = item.LastTechnicalReview.HasValue && (today - item.LastTechnicalReview.Value).TotalDays > 365;
+                    var isInsuranceOutdated = item.LastInsurance.HasValue && (today - item.LastInsurance.Value).TotalDays > 365;
+
+                    // Sprawdzanie pustych pól
+                    var isOilChangeEmpty = !item.LastOilChange.HasValue;
+                    var isReviewEmpty = !item.LastTechnicalReview.HasValue;
+                    var isInsuranceEmpty = !item.LastInsurance.HasValue;
+
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Model)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Brand)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PermissionNeeded)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CarType)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ExhaustGasEmissionCategory)</td>
+
+                        <!-- Last Technical Review -->
+                        <td class="@(isReviewEmpty ? "table-warning" : isReviewOutdated ? "table-danger" : "")">
+                            @Html.DisplayFor(modelItem => item.LastTechnicalReview)
+                        </td>
+
+                        <!-- Last Insurance -->
+                        <td class="@(isInsuranceEmpty ? "table-warning" : isInsuranceOutdated ? "table-danger" : "")">
+                            @Html.DisplayFor(modelItem => item.LastInsurance)
+                        </td>
+
+                        <!-- Last Oil Change -->
+                        <td class="@(isOilChangeEmpty ? "table-warning" : isOilChangeOutdated ? "table-danger" : "")">
+                            @Html.DisplayFor(modelItem => item.LastOilChange)
+                        </td>
+
+                        <td>@Html.DisplayFor(modelItem => item.FuelConsumption)</td>
+                        <td>@Html.DisplayFor(modelItem => item.MaxLoad)</td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-route-id="@item.RegistrationNumber" class="btn btn-sm btn-warning">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a asp-action="Details" asp-route-id="@item.RegistrationNumber" class="btn btn-sm btn-info">
+                                <i class="fas fa-info-circle"></i> Details
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.RegistrationNumber" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 }
-    </tbody>
-</table>
