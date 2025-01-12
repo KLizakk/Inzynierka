@@ -66,24 +66,28 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Cars" asp-action="Index">Cars</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Drivers" asp-action="Index">Drivers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Rental" asp-action="Index">Rentals</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Cars" asp-action="TimeTo">Time To Service</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-controller="Admin" asp-action="Index">Admin Panel</a>
-                        </li>
+                        
+                        @if (User.IsInRole("Admin") || User.IsInRole("Koordynator"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Cars" asp-action="Index">Pojazdy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Drivers" asp-action="Index">Kierowcy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Rental" asp-action="Index">Zarządzanie</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Cars" asp-action="TimeTo">Time To Service</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-controller="Admin" asp-action="Index">Panel Administracyjny</a>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
