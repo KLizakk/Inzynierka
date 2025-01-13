@@ -1,15 +1,16 @@
 ﻿@model IEnumerable<Inzynierka.Models.Rental>
 
-<h2>Rental History</h2>
+<h2>Historia Wynajmów</h2>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Car</th>
-            <th>Driver</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Notes</th>
+            <th>Pojazd</th>
+            <th>Kierowca</th>
+            <th>Data Rozpoczęcia</th>
+            <th>Data Zakończenia</th>
+            <th>Przebyty Dystans</th>
+            <th>Uwagi</th>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
                 <td>@rental.Driver.FullName</td>
                 <td>@rental.StartDate.ToShortDateString()</td>
                 <td>@rental.EndDate?.ToShortDateString()</td>
+                <td>@rental.DistanceTraveled</td>
                 <td>@rental.Notes</td>
             </tr>
         }

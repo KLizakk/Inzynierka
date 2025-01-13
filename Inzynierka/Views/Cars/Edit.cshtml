@@ -1,12 +1,12 @@
 ﻿@model Inzynierka.Models.Car
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edytuj";
 }
 
-<h1>Edit</h1>
+<h1>Edytuj</h1>
 
-<h4>Car</h4>
+<h4>Samochód</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,128 +14,130 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="RegistrationNumber" />
             <div class="form-group">
-                <label asp-for="Model" class="control-label"></label>
+                <label asp-for="Model" class="control-label">Model</label>
                 <input asp-for="Model" class="form-control" />
                 <span asp-validation-for="Model" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Brand" class="control-label"></label>
+                <label asp-for="Brand" class="control-label">Marka</label>
                 <input asp-for="Brand" class="form-control" />
                 <span asp-validation-for="Brand" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="VIN" class="control-label"></label>
+                <label asp-for="VIN" class="control-label">Numer VIN</label>
                 <input asp-for="VIN" class="form-control" />
                 <span asp-validation-for="VIN" class="text-danger"></span>
             </div>
             <div>
-                @Html.LabelFor(m => m.PermissionNeeded)
-                @Html.DropDownListFor(m => m.PermissionNeeded, (SelectList)ViewBag.PermissionNeededList, "Select Permission", new { @class = "form-control" })
+                @Html.LabelFor(m => m.PermissionNeeded, "Wymagana zgoda")
+                @Html.DropDownListFor(m => m.PermissionNeeded, (SelectList)ViewBag.PermissionNeededList, "Wybierz pozwolenie", new { @class = "form-control" })
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
+                <label asp-for="Description" class="control-label">Opis</label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ProductionYear" class="control-label"></label>
+                <label asp-for="ProductionYear" class="control-label">Rok produkcji</label>
                 <input asp-for="ProductionYear" class="form-control" />
                 <span asp-validation-for="ProductionYear" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EngineCapacity" class="control-label"></label>
+                <label asp-for="EngineCapacity" class="control-label">Pojemność silnika</label>
                 <input asp-for="EngineCapacity" class="form-control" />
                 <span asp-validation-for="EngineCapacity" class="text-danger"></span>
             </div>
             <div>
-                @Html.LabelFor(m => m.CarType)
-                @Html.DropDownListFor(m => m.CarType, (SelectList)ViewBag.CarTypeList, "Select Car Type", new { @class = "form-control" })
+                @Html.LabelFor(m => m.CarType, "Typ samochodu")
+                @Html.DropDownListFor(m => m.CarType, (SelectList)ViewBag.CarTypeList, "Wybierz typ samochodu", new { @class = "form-control" })
             </div>
             <div>
-                @Html.LabelFor(m => m.ExhaustGasEmissionCategory)
-                @Html.DropDownListFor(m => m.ExhaustGasEmissionCategory, (SelectList)ViewBag.ExhaustGasEmissionCategoryList, "Select Category", new { @class = "form-control" })
-            </div>
-
-            <div>
-                @Html.LabelFor(m => m.FuelType)
-                @Html.DropDownListFor(m => m.FuelType, (SelectList)ViewBag.FuelTypeList, "Select Fuel Type", new { @class = "form-control" })
+                @Html.LabelFor(m => m.ExhaustGasEmissionCategory, "Kategoria emisji spalin")
+                @Html.DropDownListFor(m => m.ExhaustGasEmissionCategory, (SelectList)ViewBag.ExhaustGasEmissionCategoryList, "Wybierz kategorię", new { @class = "form-control" })
             </div>
 
             <div>
-                @Html.LabelFor(m => m.GearboxType)
-                @Html.DropDownListFor(m => m.GearboxType, (SelectList)ViewBag.GearboxTypeList, "Select Gearbox Type", new { @class = "form-control" })
+                @Html.LabelFor(m => m.FuelType, "Typ paliwa")
+                @Html.DropDownListFor(m => m.FuelType, (SelectList)ViewBag.FuelTypeList, "Wybierz typ paliwa", new { @class = "form-control" })
             </div>
 
             <div>
-                @Html.LabelFor(m => m.DriveType)
-                @Html.DropDownListFor(m => m.DriveType, (SelectList)ViewBag.DriveTypeList, "Select Drive Type", new { @class = "form-control" })
+                @Html.LabelFor(m => m.GearboxType, "Typ skrzyni biegów")
+                @Html.DropDownListFor(m => m.GearboxType, (SelectList)ViewBag.GearboxTypeList, "Wybierz typ skrzyni biegów", new { @class = "form-control" })
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.DriveType, "Typ napędu")
+                @Html.DropDownListFor(m => m.DriveType, (SelectList)ViewBag.DriveTypeList, "Wybierz typ napędu", new { @class = "form-control" })
             </div>
             <div class="form-group">
-                <label asp-for="NumberOfSeats" class="control-label"></label>
+                <label asp-for="NumberOfSeats" class="control-label">Liczba miejsc</label>
                 <input asp-for="NumberOfSeats" class="form-control" />
                 <span asp-validation-for="NumberOfSeats" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumberOfDoors" class="control-label"></label>
+                <label asp-for="NumberOfDoors" class="control-label">Liczba drzwi</label>
                 <input asp-for="NumberOfDoors" class="form-control" />
                 <span asp-validation-for="NumberOfDoors" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumberOfGears" class="control-label"></label>
+                <label asp-for="NumberOfGears" class="control-label">Liczba biegów</label>
                 <input asp-for="NumberOfGears" class="form-control" />
                 <span asp-validation-for="NumberOfGears" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastTechnicalReview" class="control-label"></label>
+                <label asp-for="LastTechnicalReview" class="control-label">Ostatni przegląd techniczny</label>
                 <input asp-for="LastTechnicalReview" class="form-control" />
                 <span asp-validation-for="LastTechnicalReview" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastInsurance" class="control-label"></label>
+                <label asp-for="LastInsurance" class="control-label">Ostatnie ubezpieczenie</label>
                 <input asp-for="LastInsurance" class="form-control" />
                 <span asp-validation-for="LastInsurance" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastOilChange" class="control-label"></label>
+                <label asp-for="LastOilChange" class="control-label">Ostatnia wymiana oleju</label>
                 <input asp-for="LastOilChange" class="form-control" />
                 <span asp-validation-for="LastOilChange" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FuelConsumption" class="control-label"></label>
+                <label asp-for="FuelConsumption" class="control-label">Zużycie paliwa</label>
                 <input asp-for="FuelConsumption" class="form-control" />
                 <span asp-validation-for="FuelConsumption" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FuelTankCapacity" class="control-label"></label>
+                <label asp-for="FuelTankCapacity" class="control-label">Pojemność zbiornika paliwa</label>
                 <input asp-for="FuelTankCapacity" class="form-control" />
                 <span asp-validation-for="FuelTankCapacity" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MaxDistance" class="control-label"></label>
+                <label asp-for="MaxDistance" class="control-label">Maksymalny zasięg</label>
                 <input asp-for="MaxDistance" class="form-control" />
                 <span asp-validation-for="MaxDistance" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MaxLoad" class="control-label"></label>
+                <label asp-for="MaxLoad" class="control-label">Maksymalna ładowność</label>
                 <input asp-for="MaxLoad" class="form-control" />
                 <span asp-validation-for="MaxLoad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TreadCondition" class="control-label"></label>
+                <label asp-for="TreadCondition" class="control-label">Stan bieżnika</label>
                 <input asp-for="TreadCondition" class="form-control" />
                 <span asp-validation-for="TreadCondition" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Powrót do listy</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

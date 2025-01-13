@@ -31,11 +31,24 @@ namespace Inzynierka.Controllers
                 CarsInUse = _context.Rentals.Count(r => r.EndDate == null),
                
             };
+            model.RecentActivities = model.Rentals
+                .OrderByDescending(r => r.StartDate)
+                .Take(5)
+                .Select(r => new ActivityLogViewModel
+                {
+                    Date = r.StartDate,
+                    CarModel = r.Car.Model,
+                    CarRegistrationNumber = r.Car.RegistrationNumber,
+                    Action = r.EndDate == null ? "Wypo¿yczony" : "Zwrócony",
+                    DriverName = r.Driver.FullName
+                })
+                .ToList();
 
             return View(model);
         }
 
-
+         
+        
         public IActionResult Privacy()
         {
             return View();

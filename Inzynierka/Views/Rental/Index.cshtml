@@ -1,25 +1,25 @@
 ﻿@model IEnumerable<Inzynierka.Models.Rental>
 @{
-    ViewBag.Title = "Rental List";
+    ViewBag.Title = "Lista Wynajmów";
 }
 
-<h2 class="text-primary mb-4">Rental List</h2>
+<h2 class="text-primary mb-4">Lista Wynajmów</h2>
 <h3>
     <a asp-action="Create" class="btn btn-success mb-3">
-        <i class="fas fa-plus-circle"></i> Create Rental
+        <i class="fas fa-plus-circle"></i> Utwórz Wynajem
     </a>
 </h3>
 
 <table class="table table-striped table-hover">
     <thead class="table-dark">
         <tr>
-            <th>Driver</th>
-            <th>Car</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Distance Traveled</th>
-            <th>Notes</th>
-            <th>Actions</th>
+            <th>Kierowca</th>
+            <th>Pojazd</th>
+            <th>Data Rozpoczęcia</th>
+            <th>Data Zakończenia</th>
+            <th>Przebieg</th>
+            <th>Uwagi</th>
+            <th>Akcje</th>
         </tr>
     </thead>
     <tbody>
@@ -30,24 +30,22 @@
             var isNotesEmpty = string.IsNullOrWhiteSpace(rental.Notes);
 
             <tr>
-                <!-- Driver -->
+                <!-- Kierowca -->
                 <td>
                     @rental.Driver.FullName
                 </td>
 
-                <!-- Car -->
+                <!-- Pojazd -->
                 <td>
                     @rental.Car.RegistrationNumber
                 </td>
 
-                <!-- Start Date -->
+                <!-- Data Rozpoczęcia -->
                 <td>
                     @rental.StartDate.ToShortDateString()
                 </td>
 
-               
-
-                <!-- End Date -->
+                <!-- Data Zakończenia -->
                 <td class="@(isEndDateEmpty ? "table-warning" : "")">
                     @if (!isEndDateEmpty)
                     {
@@ -58,7 +56,7 @@
                     @rental.DistanceTraveled
                 </td>
 
-                <!-- Notes -->
+                <!-- Uwagi -->
                 <td class="@(isNotesEmpty ? "table-warning" : "")">
                     @if (!isNotesEmpty)
                     {
@@ -66,24 +64,24 @@
                     }
                 </td>
 
-                <!-- Actions -->
+                <!-- Akcje -->
                 <td class="d-flex gap-2">
-                    <!-- View Car History -->
+                    <!-- Historia Pojazdu -->
                     <a asp-action="History" asp-route-registrationNumber="@rental.Car.RegistrationNumber"
                        class="btn btn-info btn-sm">
-                        <i class="fas fa-car"></i> Car History
+                        <i class="fas fa-car"></i> Historia Pojazdu
                     </a>
 
-                    <!-- View Driver History -->
+                    <!-- Historia Kierowcy -->
                     <a asp-action="History" asp-route-driverId="@rental.Driver.DriverId"
                        class="btn btn-info btn-sm">
-                        <i class="fas fa-user"></i> Driver History
+                        <i class="fas fa-user"></i> Historia Kierowcy
                     </a>
 
-                    <!-- Return Car -->
+                    <!-- Zwróć Pojazd -->
                     <a asp-action="ReturnCar" asp-route-rentalId="@rental.Id"
                        class="btn btn-warning btn-sm">
-                        <i class="fas fa-undo"></i> Return
+                        <i class="fas fa-undo"></i> Zwróć
                     </a>
                 </td>
             </tr>

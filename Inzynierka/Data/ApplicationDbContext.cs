@@ -129,7 +129,7 @@ namespace Inzynierka.Data
                  FuelTankCapacity = null,
                  MaxDistance = 600,
                  MaxLoad = 500,
-                 TreadCondition = 80
+                 TreadCondition = 3
 
              },
              new Car
@@ -157,7 +157,7 @@ namespace Inzynierka.Data
                  FuelTankCapacity = 45,
                  MaxDistance = 700,
                  MaxLoad = 400,
-                 TreadCondition = 70
+                 TreadCondition = 3.2
              },
              new Car
              {
@@ -184,7 +184,7 @@ namespace Inzynierka.Data
                  FuelTankCapacity = 50,
                  MaxDistance = 900,
                  MaxLoad = 450,
-                 TreadCondition = 80
+                 TreadCondition = 3.1
              },
              new Car
              {
@@ -211,7 +211,7 @@ namespace Inzynierka.Data
                  FuelTankCapacity = 60,
                  MaxDistance = 1100,
                  MaxLoad = 480,
-                 TreadCondition = 90
+                 TreadCondition = 3.4
              },
 
 new Car
@@ -239,7 +239,7 @@ new Car
     FuelTankCapacity = 58,
     MaxDistance = 800,
     MaxLoad = 500,
-    TreadCondition = 75
+    TreadCondition = 3.2
 },
 
 new Car
@@ -267,7 +267,7 @@ new Car
     FuelTankCapacity = null,
     MaxDistance = 560,
     MaxLoad = 430,
-    TreadCondition = 85
+    TreadCondition = 1.6
 },
 
 new Car
@@ -295,7 +295,7 @@ new Car
     FuelTankCapacity = 50,
     MaxDistance = 950,
     MaxLoad = 470,
-    TreadCondition = 60
+    TreadCondition = 1.8
 }
                 );
 
