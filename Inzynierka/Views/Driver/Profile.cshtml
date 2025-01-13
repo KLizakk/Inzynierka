@@ -1,0 +1,72 @@
+﻿@model Inzynierka.Models.Driver
+
+<h2>Profil Kierowcy</h2>
+
+<div>
+    <p><strong>Imię i nazwisko:</strong> @Model.FullName</p>
+    <p><strong>Numer telefonu:</strong> @Model.PhoneNumber</p>
+    <p><strong>Data urodzenia:</strong> @Model.DateOfBirth.ToShortDateString()</p>
+    <p><strong>Czy zajęty:</strong> @(Model.IsBusy ? "<span class='text-danger'>Tak</span>" : "Nie")</p>
+</div>
+
+<h3>Wypożyczenia:</h3>
+
+@if (Model.Rentals != null && Model.Rentals.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Rejestracja</th>
+                <th>Model Samochodu</th>
+                <th>Data Rozpoczęcia</th>
+                <th>Data Zakończenia</th>
+                <th>Przebyty Dystans</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var rental in Model.Rentals)
+            {
+                var isActiveRental = !rental.EndDate.HasValue;
+                <tr class="@(isActiveRental ? "table-warning" : "")">
+                    <td class="@(rental.Car?.RegistrationNumber == null ? "text-danger" : "")">
+                        @(rental.Car?.RegistrationNumber ?? "Brak danych")
+                    </td>
+                    <td class="@(rental.Car?.Model == null ? "text-danger" : "")">
+                        @(rental.Car?.Model ?? "Brak danych")
+                    </td>
+                    <td>
+                        @rental.StartDate.ToShortDateString()
+                    </td>
+                    <td class="@(isActiveRental ? "text-danger" : "")">
+                        @(rental.EndDate.HasValue ? rental.EndDate.Value.ToShortDateString() : "W trakcie")
+                    </td>
+                    <td class="@(rental.DistanceTraveled == null ? "text-danger" : "")">
+                        @(rental.DistanceTraveled.HasValue ? $"{rental.DistanceTraveled.Value} km" : "Brak danych")
+                    </td>
+                    <td>
+                        @if (isActiveRental)
+                        {
+                            <a asp-action="ReturnCar" asp-route-rentalId="@rental.Id" class="btn btn-danger btn-sm">Zwróć auto</a>
+                        }
+                        else
+                        {
+                            <span class="text-success">Zakończone</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>
+        Łączny przebyty dystans:
+        <strong>@(Model.Rentals.Where(r => r.DistanceTraveled.HasValue).Sum(r => r.DistanceTraveled.Value)) km</strong>
+    </h4>
+}
+else
+{
+    <p class="text-muted">Brak wypożyczeń.</p>
+}
+
+<a asp-action="Edit" class="btn btn-primary">Edytuj dane</a>

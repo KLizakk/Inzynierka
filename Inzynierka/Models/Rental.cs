@@ -22,7 +22,8 @@ namespace Inzynierka.Models
         public DateTime? EndDate { get; set; }
 
         public string? Notes { get; set; }
-        // Nawigacja do relacji
+        
+        public double? DistanceTraveled { get; set; }
        
     }
 }

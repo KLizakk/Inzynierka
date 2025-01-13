@@ -1,0 +1,27 @@
+﻿@model Inzynierka.Models.Driver
+
+<h2>Edytuj dane kierowcy</h2>
+
+<form asp-action="Edit" method="post">
+    <div>
+        <label for="FirstName">Imię</label>
+        <input asp-for="FirstName" />
+        <span asp-validation-for="FirstName"></span>
+    </div>
+    <div>
+        <label for="LastName">Nazwisko</label>
+        <input asp-for="LastName" />
+        <span asp-validation-for="LastName"></span>
+    </div>
+    <div>
+        <label for="PhoneNumber">Numer telefonu</label>
+        <input asp-for="PhoneNumber" />
+        <span asp-validation-for="PhoneNumber"></span>
+    </div>
+    <div>
+        <label for="DateOfBirth">Data urodzenia</label>
+        <input asp-for="DateOfBirth" type="date" />
+        <span asp-validation-for="DateOfBirth"></span>
+    </div>
+    <button type="submit">Zapisz</button>
+</form>

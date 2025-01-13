@@ -17,6 +17,7 @@
             <th>Car</th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th>Distance Traveled</th>
             <th>Notes</th>
             <th>Actions</th>
         </tr>
@@ -44,12 +45,17 @@
                     @rental.StartDate.ToShortDateString()
                 </td>
 
+               
+
                 <!-- End Date -->
                 <td class="@(isEndDateEmpty ? "table-warning" : "")">
                     @if (!isEndDateEmpty)
                     {
                         @rental.EndDate?.ToShortDateString()
                     }
+                </td>
+                <td>
+                    @rental.DistanceTraveled
                 </td>
 
                 <!-- Notes -->

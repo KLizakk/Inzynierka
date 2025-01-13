@@ -1,8 +1,129 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model Inzynierka.Models.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Panel Zarządzania Flotą";
 }
 
+@if (User.IsInRole("Admin") || User.IsInRole("Koordynator"))
+{
+    <div class="container mt-4">
+        <h1 class="display-4">Panel Zarządzania Flotą</h1>
+        <p class="lead">Zarządzaj flotą pojazdów w firmie i monitoruj ich wykorzystanie.</p>
+
+        <!-- Statystyki floty -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Liczba pojazdów</h5>
+                        <p class="card-text">@Model.TotalCars</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">W użyciu</h5>
+                        <p class="card-text">@Model.CarsInUse</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-danger mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Wymagają uwagi</h5>
+                        <p class="card-text">@Model.CarsNeedingMaintenance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ostatnie działania -->
+        <h3>Ostatnie działania</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Samochód</th>
+                    <th>Akcja</th>
+                    <th>Kierowca</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var log in Model.RecentActivities)
+                {
+                    <tr>
+                        <td>@log.Date.ToShortDateString()</td>
+                        <td>@log.CarModel (@log.CarRegistrationNumber)</td>
+                        <td>@log.Action</td>
+                        <td>@log.DriverName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!-- Szybkie akcje -->
+        <div class="mt-4">
+            <h3>Szybkie akcje</h3>
+            <a asp-controller="Cars" asp-action="Create" class="btn btn-primary">Dodaj nowy pojazd</a>
+            <a asp-controller="Rental" asp-action="Create" class="btn btn-success">Dodaj nowe wypożyczenie</a>
+            <a asp-controller="Cars" asp-action="Index" class="btn btn-info">Przeglądaj wszystkie pojazdy</a>
+        </div>
+    </div>
+}
+
+
+
+@if(!User.Identity.IsAuthenticated)
+{
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Zarządzanie flotą firmową</h1>
+    <p class="lead">Nasza aplikacja umożliwia zarządzanie flotą pojazdów w firmie, monitorowanie wypożyczeń i przeglądów technicznych. Zaloguj się, aby uzyskać dostęp do pełnej funkcjonalności.</p>
+
+   
+
+    <!-- Ewentualnie publiczne informacje o aplikacji -->
+    <h3>Dlaczego warto?</h3>
+    <p>Nasza aplikacja umożliwia łatwe zarządzanie flotą pojazdów, śledzenie przeglądów technicznych, wypożyczeń oraz utrzymywanie aktualnych danych o pojazdach i kierowcach.</p>
 </div>
+}
+
+
+@if(User.IsInRole("Kierowca"))
+{
+    <div class="text-center">
+        <h1 class="display-4">Witaj @Model.FullName!</h1>
+        <p class="lead">Zarządzaj swoimi wypożyczeniami i danymi osobowymi.</p>
+
+        <!-- Inne dane, np. statystyki floty -->
+        <h3>Twoje wypożyczenia:</h3>
+        @if (Model.RecentActivities != null && Model.RecentActivities.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Samochód</th>
+                        <th>Akcja</th>
+                        <th>Kierowca</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var activity in Model.RecentActivities)
+                    {
+                        <tr>
+                            <td>@activity.Date.ToShortDateString()</td>
+                            <td>@activity.CarModel (@activity.CarRegistrationNumber)</td>
+                            <td>@activity.Action</td>
+                            <td>@activity.DriverName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>Brak ostatnich działań.</p>
+        }
+    </div>
+}

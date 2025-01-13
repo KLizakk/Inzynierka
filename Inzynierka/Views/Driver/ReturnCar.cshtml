@@ -1,0 +1,15 @@
+﻿@model Inzynierka.Models.Rental
+
+<h2>Zwrot Auta</h2>
+
+<p><strong>Samochód:</strong> @Model.Car?.RegistrationNumber (@Model.Car?.Model)</p>
+<p><strong>Data Rozpoczęcia:</strong> @Model.StartDate.ToShortDateString()</p>
+
+<form asp-action="ReturnCar" method="post">
+    <input type="hidden" name="rentalId" value="@Model.Id" />
+    <div>
+        <label for="distanceTraveled">Przejechany dystans (km):</label>
+        <input type="number" step="0.01" name="distanceTraveled" id="distanceTraveled" required />
+    </div>
+    <button type="submit">Zakończ wynajem</button>
+</form>

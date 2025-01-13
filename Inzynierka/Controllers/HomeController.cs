@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
+
 namespace Inzynierka.Controllers
 {
     public class HomeController : Controller
@@ -22,9 +23,18 @@ namespace Inzynierka.Controllers
 
         public IActionResult Index()
         {
+            var model = new DashboardViewModel
+            {
+                // Przypisz dane do modelu, np. z bazy danych
+                Rentals = _context.Rentals.Include(r => r.Car).Include(r => r.Driver).ToList(),
+                TotalCars = _context.Cars.Count(),
+                CarsInUse = _context.Rentals.Count(r => r.EndDate == null),
+               
+            };
 
-            return View();
+            return View(model);
         }
+
 
         public IActionResult Privacy()
         {
