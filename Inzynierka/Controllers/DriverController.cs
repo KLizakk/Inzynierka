@@ -104,6 +104,7 @@ namespace YourNamespace.Controllers
         public async Task<IActionResult> ReturnCar(int rentalId, double distanceTraveled)
         {
             var userId = _userManager.GetUserId(User);
+            var driver = await _context.Drivers.FirstOrDefaultAsync(d => d.UserId == userId);
             if (userId == null)
                 return Unauthorized();
 
@@ -122,6 +123,7 @@ namespace YourNamespace.Controllers
 
             rental.DistanceTraveled = distanceTraveled;
             rental.EndDate = DateTime.Now;
+            driver.IsBusy = false;
 
             _context.Update(rental);
             await _context.SaveChangesAsync();
